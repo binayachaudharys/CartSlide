@@ -1,0 +1,91 @@
+#optional{
+    display: none;
+}
+.radiobox-1{
+    border: 1px solid;
+    width: 26px;
+    background-color: #ffffff;
+    padding: 4px 165px 4px 165px;
+    color: rgb(0, 0, 0);
+}
+#optional:checked ~ .radiobox-1{
+    border: 1px solid;
+    width: 26px;
+    background-color: #049a09;
+    padding: 4px 165px 4px 165px;
+    color: white;
+}
+#disabled{
+    display: none;
+}
+
+.radiobox-0{
+    border: 1px solid;
+    width: 26px;
+    background-color: #ffffff;
+    padding: 4px 165px 4px 165px;
+    color: rgb(0, 0, 0);
+}
+#disabled:checked ~ .radiobox-0{
+    border: 0px solid;
+    width: 26px;
+    background-color: #049a09;
+    padding: 4px 165px 4px 165px;
+    color: white;
+}
+
+#theme-0{
+    display: none;
+}
+.themebox-0{
+    border: 1px solid #c4cdd5;
+    width: 26px;
+    background-color: #ffffff;
+    padding: 4px 165px 4px 165px;
+    color: rgb(0, 0, 0);
+        line-height: 36px;
+    transition: 0.2s color, 0.2s background-color;
+}
+#theme-0:checked ~ .themebox-0{
+
+    width: 26px;
+    padding: 4px 165px 4px 165px;
+    background: #008060;
+    color: white;
+    border-color: #008060;
+
+    text-align: center;
+    border: 1px solid #c4cdd5;
+    line-height: 36px;
+    transition: 0.2s color, 0.2s background-color;
+
+}
+#theme-1{
+    display: none;
+}
+
+.themebox-1{
+    border: 1px solid #c4cdd5;
+    width: 26px;
+    background-color: #ffffff;
+    padding: 4px 165px 4px 150px;
+    color: rgb(0, 0, 0);
+    line-height: 36px;
+    transition: 0.2s color, 0.2s background-color;
+}
+#theme-1:checked ~ .themebox-1{
+    width: 26px;
+    padding: 4px 165px 4px 150px;
+    background: #008060;
+    color: white;
+    border-color: #008060;
+    text-align: center;
+    border: 1px solid #c4cdd5;
+    line-height: 36px;
+    transition: 0.2s color, 0.2s background-color;
+}
+
+.bg-design{
+    background-color: #ffffff;
+
+}
