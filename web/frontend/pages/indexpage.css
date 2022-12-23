@@ -89,3 +89,15 @@
     background-color: #ffffff;
 
 }
+#PolarisRangeSlider1{
+    z-index: 1 !important;
+}
+#PolarisRangeSlider2{
+    z-index: 1 !important;
+}
+#PolarisRangeSlider3{
+    z-index: 1 !important;
+}
+#PolarisRangeSlider4{
+    z-index: 1 !important;
+}

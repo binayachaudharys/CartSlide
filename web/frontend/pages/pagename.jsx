@@ -1,8 +1,18 @@
 import { Card, Page, Layout, TextContainer, Heading } from "@shopify/polaris";
 import { TitleBar } from "@shopify/app-bridge-react";
-import SketchExample from "./test";
+import TestColor from "./testcolor";
+import { Setting } from '../Setting.json';
+import { useState } from "react";
 
 export default function PageName() {
+
+  const data = Setting;
+
+  const [dataA, setDataA] = useState([]);
+  const testa = ()=>{
+    alert("hello");
+  }
+  console.log(dataA);
   return (
     <Page>
       <TitleBar
@@ -43,7 +53,9 @@ export default function PageName() {
         </Layout.Section>
       </Layout> */}
 
-<SketchExample/>
+    < TestColor  datacolor={data} index={0} />
+    < TestColor  datacolor={data} index={1}/>
+    < TestColor  datacolor={data} index={2}/>
     </Page>
   );
 }

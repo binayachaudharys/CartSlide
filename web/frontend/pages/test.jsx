@@ -2,9 +2,9 @@
 
 import React from 'react'
 import reactCSS from 'reactcss'
-import { SketchPicker } from 'react-color'
+import { ChromePicker } from 'react-color'
 
-class SketchExample extends React.Component {
+class Sketch extends React.Component {
   state = {
     displayColorPicker: false,
     color: {
@@ -15,6 +15,7 @@ class SketchExample extends React.Component {
     },
   };
 
+  
   handleClick = () => {
     this.setState({ displayColorPicker: !this.state.displayColorPicker })
   };
@@ -56,17 +57,20 @@ class SketchExample extends React.Component {
           bottom: '0px',
           left: '0px',
         },
+        
       },
     });
 
+
+
     return (
-      <div>
+      <div >
         <div style={ styles.swatch } onClick={ this.handleClick }>
           <div style={ styles.color } />
         </div>
         { this.state.displayColorPicker ? <div style={ styles.popover }>
-          <div style={ styles.cover } onClick={ this.handleClose }/>
-          <SketchPicker color={ this.state.color } onChange={ this.handleChange } />
+          <div style={ styles.cover }    onClick={ this.handleClose }/>
+          <ChromePicker color={ this.state.color } onChange={ this.handleChange } />
         </div> : null }
 
       </div>
@@ -74,4 +78,4 @@ class SketchExample extends React.Component {
   }
 }
 
-export default SketchExample
+export default Sketch

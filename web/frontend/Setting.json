@@ -1,10 +1,42 @@
 {
   "Setting": {
     "position": "left",
+    "choiceitem": [
+      "dark"
+    ],
     "checked": true,
-    "checked1": false,
+    "checked1": true,
     "checked2": false,
+    "checked3": false,
+    "checked4": true,
+    "checked5": true,
     "font_size": 32,
-    "mobile_size": 20
+    "mobile_size": 20,
+    "countdown": 48,
+    "colors": {
+      "color": [
+        {
+          "a": 1,
+          "r": 20,
+          "g": 154,
+          "b": 154,
+          "id":1
+        },
+        {
+          "a": 1,
+          "r": 120,
+          "g": 154,
+          "b": 154,
+          "id":2
+        },
+        {
+          "a": 1,
+          "r": 10,
+          "g": 14,
+          "b": 154,
+          "id":3
+        }
+      ]
+    }
   }
 }

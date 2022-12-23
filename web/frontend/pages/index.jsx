@@ -15,10 +15,12 @@ import {
   Frame,
 
 } from "@shopify/polaris";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import './indexpage.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import { Setting } from '../Setting.json'
+import Sketch from "./test";
+import TestColor from "./testcolor";
 
 
 
@@ -26,6 +28,8 @@ import { Setting } from '../Setting.json'
 export default function HomePage() {
 
   const data = Setting;
+
+
 
   const [value, setValue] = useState(data.position);
   const [valuetheme, setTheme] = useState(data.theme);
@@ -47,10 +51,11 @@ export default function HomePage() {
     saturation: 12,
   });
 
-  const [rangeFont, setRangeFont] = useState(data.font_size);
+  const [rangeFonts, setRangeFont] = useState(data.font_size);
   const [rangeValue, setRangeValue] = useState(data.mobile_size);
 
   const handleRangeSliderFont = useCallback(
+    
     (value) => setRangeFont(value),
     [],
   );
@@ -83,8 +88,33 @@ export default function HomePage() {
   }, []);
 
 
-  const [selected, setSelected] = useState(['light']);
+  const [selected, setSelected] = useState(data.choiceitem);
+
   const handleChoiceListChange = useCallback((value) => setSelected(value), []);
+  const [checked1, setChecked1] = useState(data.checked1);
+  const [checked2, setChecked2] = useState(data.checked2);
+  const [checked3, setChecked3] = useState(data.checked3);
+  const [checked4, setChecked4] = useState(data.checked4);
+  const [checked5, setChecked5] = useState(data.checked5);
+
+
+  const [rangeCount, setCountDown] = useState(data.countdown);
+
+
+  const handleRangeSlider = useCallback(
+    (value) => setCountDown(value),
+    [],
+  );
+
+
+  const handleChange1 = useCallback((newChecked) => setChecked1(newChecked), []);
+  const handleChange2 = useCallback((newChecked) => setChecked2(newChecked), []);
+  const handleChange3 = useCallback((newChecked) => setChecked3(newChecked), []);
+  const handleChange4 = useCallback((newChecked) => setChecked4(newChecked), []);
+  const handleChange5 = useCallback((newChecked) => setChecked5(newChecked), []);
+ const [visable, setVisable] = useState(false);
+
+
 
 
 
@@ -93,10 +123,19 @@ export default function HomePage() {
       isSelected && (
         <div>
           <Stack>
-            <ColorPicker onChange={setColor} color={color} />
-            <ColorPicker onChange={setColor1} color={color1} />
-            <ColorPicker onChange={setColor2} color={color2} />
-           
+        
+          < TestColor  datacolor={data} index={0} />
+          <Label>Accent/button color</Label>
+
+    < TestColor  datacolor={data} index={1}/>
+    <Label>Button hover color</Label>
+    < TestColor  datacolor={data} index={2}/>
+     
+      
+     
+
+
+           <Label>Button text/icon color</Label>
           </Stack>
         </div>
       ),
@@ -151,10 +190,10 @@ export default function HomePage() {
           </Stack>
        
        
-          <div className="colorpicker">
+          <div className="colorpicker" >
 
 
-          </div>
+        
           <Stack>
             <Checkbox
               label="Theme font iherted"
@@ -166,10 +205,10 @@ export default function HomePage() {
 
           <RangeSlider
             label="Opacity percentage"
-            value={rangeFont}
+            value={rangeFonts}
             onChange={handleRangeSliderFont}
             output
-            suffix={rangeFont}
+            suffix={rangeFonts}
           />
 
           <RangeSlider
@@ -179,7 +218,7 @@ export default function HomePage() {
             output
             suffix={rangeValue}
           />
-
+  </div>
         </Card>
       </Page>
     </div>
@@ -187,27 +226,7 @@ export default function HomePage() {
   );
 
 
-  const [checked1, setChecked1] = useState(data.checked1);
-  const [checked2, setChecked2] = useState(data.checked2);
-  const [checked3, setChecked3] = useState(data.checked3);
-  const [checked4, setChecked4] = useState(data.checked4);
-  const [checked5, setChecked5] = useState(data.checked5);
-
-
-  const [rangeFonts, setRange] = useState(32);
-
-
-  const handleRangeSlider = useCallback(
-    (value) => setRange(value),
-    [],
-  );
-
-
-  const handleChange1 = useCallback((newChecked) => setChecked1(newChecked), []);
-  const handleChange2 = useCallback((newChecked) => setChecked2(newChecked), []);
-  const handleChange3 = useCallback((newChecked) => setChecked3(newChecked), []);
-  const handleChange4 = useCallback((newChecked) => setChecked4(newChecked), []);
-  const handleChange5 = useCallback((newChecked) => setChecked5(newChecked), []);
+ 
 
 
 
@@ -278,10 +297,10 @@ export default function HomePage() {
           />
           <RangeSlider
             label="Countdown timer minutes"
-            value={rangeFonts}
-            onChange={handleRangeSlider}
+            value={rangeCount}
+            onChange={(value,ture)=>{handleRangeSlider(value);setVisable(ture)}}
             output
-            suffix={rangeFonts}
+            suffix={rangeCount}
           />
 
           <center>
@@ -302,17 +321,21 @@ export default function HomePage() {
 
     await fetch('http://localhost:3000/Setting', {
         method: 'PUT',
-        body: JSON.stringify({position:value,theme:valuetheme,checked:checked,checked1:checked1,checked2:checked2,checked3:checked3,checked4:checked4,checked5:checked5,font_size:rangeFonts,mobile_size:rangeValue}),
+        body: JSON.stringify({position:value,theme:valuetheme,choiceitem:selected,checked:checked,checked1:checked1,checked2:checked2,checked3:checked3,checked4:checked4,checked5:checked5,font_size:rangeFonts,mobile_size:rangeValue,countdown:rangeCount}),
         headers: { 'Content-Type': 'application/json' }
     })
 
     alert("Update Position")
+    setVisable(false);
 }
+
+
+console.log(rangeCount);
   return (
     <div className="container">
       <Frame> 
         {
-          value==="left" &&
+           visable &&
         
         <ContextualSaveBar
           message="Unsaved changes"
