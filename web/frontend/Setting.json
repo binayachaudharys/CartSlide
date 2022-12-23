@@ -1,10 +1,10 @@
 {
- 
-    "Setting": 
-        {
-            "position": "right",
-            "theme": "light",
-            "font_size": "50    "
-        }
-
+  "Setting": {
+    "position": "left",
+    "checked": true,
+    "checked1": false,
+    "checked2": false,
+    "font_size": 32,
+    "mobile_size": 20
+  }
 }

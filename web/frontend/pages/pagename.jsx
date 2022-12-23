@@ -1,5 +1,6 @@
 import { Card, Page, Layout, TextContainer, Heading } from "@shopify/polaris";
 import { TitleBar } from "@shopify/app-bridge-react";
+import SketchExample from "./test";
 
 export default function PageName() {
   return (
@@ -17,7 +18,7 @@ export default function PageName() {
           },
         ]}
       />
-      <Layout>
+      {/* <Layout>
         <Layout.Section>
           <Card sectioned>
             <Heading>Heading</Heading>
@@ -40,7 +41,9 @@ export default function PageName() {
             </TextContainer>
           </Card>
         </Layout.Section>
-      </Layout>
+      </Layout> */}
+
+<SketchExample/>
     </Page>
   );
 }

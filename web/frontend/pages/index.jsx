@@ -11,12 +11,15 @@ import {
   Button,
   ColorPicker,
   ChoiceList,
+  ContextualSaveBar,
+  Frame,
 
 } from "@shopify/polaris";
 import { useCallback, useState } from "react";
 import './indexpage.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
-import {Setting} from '../Setting.json'
+import { Setting } from '../Setting.json'
+
 
 
 
@@ -27,7 +30,7 @@ export default function HomePage() {
   const [value, setValue] = useState(data.position);
   const [valuetheme, setTheme] = useState(data.theme);
 
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = useState(data.checked);
   const [color, setColor] = useState({
     hue: 120,
     brightness: 1,
@@ -45,7 +48,7 @@ export default function HomePage() {
   });
 
   const [rangeFont, setRangeFont] = useState(data.font_size);
-  const [rangeValue, setRangeValue] = useState(62);
+  const [rangeValue, setRangeValue] = useState(data.mobile_size);
 
   const handleRangeSliderFont = useCallback(
     (value) => setRangeFont(value),
@@ -78,46 +81,35 @@ export default function HomePage() {
     setTheme("dark");
     console.log("dart");
   }, []);
-  
+
 
   const [selected, setSelected] = useState(['light']);
   const handleChoiceListChange = useCallback((value) => setSelected(value), []);
 
- 
+
 
   const renderChildren = useCallback(
     (isSelected) =>
       isSelected && (
-       <div>
-<Stack>
-         <ColorPicker onChange={setColor} color={color} />
-         <ColorPicker onChange={setColor1} color={color1} />
-         <ColorPicker onChange={setColor2} color={color2} />
-         </Stack>
-       </div>
+        <div>
+          <Stack>
+            <ColorPicker onChange={setColor} color={color} />
+            <ColorPicker onChange={setColor1} color={color1} />
+            <ColorPicker onChange={setColor2} color={color2} />
+           
+          </Stack>
+        </div>
       ),
     [],
   );
-  const renderChildren1 = useCallback(
-    (isSelected) =>
-      isSelected && (
-       <div>
-<Stack>
-         <ColorPicker onChange={setColor} color={color} />
-         <ColorPicker onChange={setColor1} color={color1} />
-         <ColorPicker onChange={setColor2} color={color2} />
-         </Stack>
-       </div>
-      ),
-    [],
-  );
+ 
 
 
 
   const Details = (
     <div>
       <Page title=" Design Setting">
-        <Card>
+        <Card sectioned>
 
 
           <Label>Position</Label>
@@ -137,65 +129,31 @@ export default function HomePage() {
 
             </div>
           </div>
-          {/* <Label> Position</Label>
-
-          <RadioButton
-            label="Right"
-
-            checked={value === 'right'}
-            id="disabled"
-            name="accounts"
-            onChange={handlePosition1}
-          />
-
-          <RadioButton
-            label="Left"
-
-            id="optional"
-            name="accounts"
-            checked={value === 'left'}
-            onChange={handlePosition}
-          /> */}
-
-<Stack>
-
-<ChoiceList
-
-choices={[
-  {label: 'Light', value: 'light',renderChildren1,},
-  {label: 'Lighssst', value: 'lighdt',renderChildren,},
-
-  {
-    label: 'Dark',
-    value: 'dark',
-    renderChildren,
-  },
-]}
-selected={selected}
-onChange={handleChoiceListChange}
-/>
-</Stack>
+    
           <Label> Theme</Label>
-          <RadioButton
-            label="Light"
+          <Stack>
+         
+            <ChoiceList
 
-            checked={valuetheme === 'light'}
-            id="light"
-            name="accounts"
-            onChange={handleTheme}
-          />
+              choices={[
+                { label: 'Light', value: 'light'},
+       
 
-          <RadioButton
-            label="Dark"
-
-            id="dark"
-            name="accounts"
-            checked={valuetheme === 'dark'}
-            onChange={handleTheme1}
-          />
+                {
+                  label: 'Dark',
+                  value: 'dark',
+                  renderChildren,
+                },
+              ]}
+              selected={selected}
+              onChange={handleChoiceListChange}
+            />
+          </Stack>
+       
+       
           <div className="colorpicker">
 
-        
+
           </div>
           <Stack>
             <Checkbox
@@ -204,11 +162,7 @@ onChange={handleChoiceListChange}
               onChange={handleChange}
             />
           </Stack>
-          <Checkbox
-            label="Icon "
-            checked={checked}
-            onChange={handleChange}
-          />
+      
 
           <RangeSlider
             label="Opacity percentage"
@@ -233,11 +187,11 @@ onChange={handleChoiceListChange}
   );
 
 
-  const [checked1, setChecked1] = useState(false);
-  const [checked2, setChecked2] = useState(false);
-  const [checked3, setChecked3] = useState(false);
-  const [checked4, setChecked4] = useState(false);
-  const [checked5, setChecked5] = useState(false);
+  const [checked1, setChecked1] = useState(data.checked1);
+  const [checked2, setChecked2] = useState(data.checked2);
+  const [checked3, setChecked3] = useState(data.checked3);
+  const [checked4, setChecked4] = useState(data.checked4);
+  const [checked5, setChecked5] = useState(data.checked5);
 
 
   const [rangeFonts, setRange] = useState(32);
@@ -259,80 +213,82 @@ onChange={handleChoiceListChange}
 
 
 
+
+
   const FunctionD = (
     <div>
       <Page title="Functionality Setting">
 
-          <Card >
+        <Card sectioned>
 
 
-            <div>
-              <Checkbox
-                label="Enable cart notes"
-                checked={checked1}
-                onChange={handleChange1}
-              />
-            </div>
-            <div>
-              <Checkbox
-                label="Sticky footer "
-                checked={checked2}
-                onChange={handleChange2}
-              />
-            </div>
-            <div>
-              <Checkbox
-                label="Continue shopping link"
-                checked={checked3}
-                onChange={handleChange3}
-              />
-            </div>
-            <div>
-              <Checkbox
-                label="Show additional checkout buttons "
-                checked={checked4}
-                onChange={handleChange4}
-              />
-            </div>
+          <div>
             <Checkbox
-              label="Show custom properties in cart "
-              checked={checked5}
-              onChange={handleChange5}
+              label="Enable cart notes"
+              checked={checked1}
+              onChange={handleChange1}
             />
-
-
-            <Label> Variant & property format</Label>
-
-            <RadioButton
-              label="Value.Value"
-
-              checked={value === 'right'}
-              id="disabled"
-              name="accounts"
-              onChange={handlePosition1}
+          </div>
+          <div>
+            <Checkbox
+              label="Sticky footer "
+              checked={checked2}
+              onChange={handleChange2}
             />
-
-            <RadioButton
-              label="Key:Value"
-
-              id="optional"
-              name="accounts"
-              checked={value === 'left'}
-              onChange={handlePosition}
+          </div>
+          <div>
+            <Checkbox
+              label="Continue shopping link"
+              checked={checked3}
+              onChange={handleChange3}
             />
-            <RangeSlider
-              label="Countdown timer minutes"
-              value={rangeFonts}
-              onChange={handleRangeSlider}
-              output
-              suffix={rangeFonts}
+          </div>
+          <div>
+            <Checkbox
+              label="Show additional checkout buttons "
+              checked={checked4}
+              onChange={handleChange4}
             />
+          </div>
+          <Checkbox
+            label="Show custom properties in cart "
+            checked={checked5}
+            onChange={handleChange5}
+          />
 
-            <center>
 
-              <Button  >More Settings</Button>
-            </center>
-          </Card>
+          <Label> Variant & property format</Label>
+
+          <RadioButton
+            label="Value.Value"
+
+            checked={value === 'right'}
+            id="disabled"
+            name="accounts"
+            onChange={handlePosition1}
+          />
+
+          <RadioButton
+            label="Key:Value"
+
+            id="optional"
+            name="accounts"
+            checked={value === 'left'}
+            onChange={handlePosition}
+          />
+          <RangeSlider
+            label="Countdown timer minutes"
+            value={rangeFonts}
+            onChange={handleRangeSlider}
+            output
+            suffix={rangeFonts}
+          />
+
+          <center>
+
+            <Button  >More Settings</Button>
+          </center>
+        </Card>
 
 
       </Page>
@@ -340,27 +296,57 @@ onChange={handleChoiceListChange}
 
 
   );
+
+  const createSuvery = async () => {
+    
+
+    await fetch('http://localhost:3000/Setting', {
+        method: 'PUT',
+        body: JSON.stringify({position:value,theme:valuetheme,checked:checked,checked1:checked1,checked2:checked2,checked3:checked3,checked4:checked4,checked5:checked5,font_size:rangeFonts,mobile_size:rangeValue}),
+        headers: { 'Content-Type': 'application/json' }
+    })
+
+    alert("Update Position")
+}
   return (
     <div className="container">
+      <Frame> 
+        {
+          value==="left" &&
+        
+        <ContextualSaveBar
+          message="Unsaved changes"
+          saveAction={{
+            onAction: () => createSuvery(),
+            loading: false,
+            disabled: false,
+          }}
+          discardAction={{
+            onAction: () => console.log('add form submit logic'),
+          }}
+        />
+      }
 
-      <Page title="Settings" fullWidth>
-        <Layout>
-          <Layout.AnnotatedSection
-            title="Store details"
-            description="Shopify and your customers will use this information to contact you."
-          >
-            {Details}
-            {FunctionD}
 
-          </Layout.AnnotatedSection>
-          <Layout.AnnotatedSection
-            title="Store address"
-            description="This address will appear on your invoices."
-          >
-            {/* Address fields */}
-          </Layout.AnnotatedSection>
-        </Layout>
-      </Page>
+        <Page title="Settings" fullWidth>
+          <Layout>
+            <Layout.AnnotatedSection
+              title="Store details"
+              description="Shopify and your customers will use this information to contact you."
+            >
+              {Details}
+              {FunctionD}
+
+            </Layout.AnnotatedSection>
+            <Layout.AnnotatedSection
+              title="Store address"
+              description="This address will appear on your invoices."
+            >
+              {/* Address fields */}
+            </Layout.AnnotatedSection>
+          </Layout>
+        </Page>
+      </Frame>
     </div>
 
   );
