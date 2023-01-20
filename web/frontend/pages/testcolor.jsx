@@ -9,6 +9,7 @@ export default function TestColor(Props) {
  
 // console.log(Props);
     const [vcolor, setColor] = useState(Props.datacolor.colors);
+    const [vcol, setCol] = useState();
     console.log(vcolor);
     const [displayColorPicker, setDisplay] = useState(false)
 
@@ -20,12 +21,13 @@ export default function TestColor(Props) {
         setDisplay(false);
     };
    
-
-    const handleChange = (vcolor) => {
-        setColor({ color: vcolor[Props.index].rgb });
+    const datacolor = vcolor.color[0];
+console.log(vcol);
+    const handleChange = (datacolor) => {
+        setCol(datacolor.rgb );
 
       
-    };
+    }; 
 
 
     const styles = reactCSS({

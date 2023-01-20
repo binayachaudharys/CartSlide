@@ -28,9 +28,10 @@ import TestColor from "./testcolor";
 export default function HomePage() {
 
   const data = Setting;
+  
 
-
-
+  const [visable, setVisable] = useState(false);
+  
   const [value, setValue] = useState(data.position);
   const [valuetheme, setTheme] = useState(data.theme);
 
@@ -68,13 +69,35 @@ export default function HomePage() {
 
 
   const handlePosition = useCallback(() => {
-    setValue("left");
-    console.log("left");
+    if(value==="left")
+    {
+     
+      setValue("left");
+      setVisable(false);
+    }
+    else if(value==="right")
+    {
+      setValue("right");
+      setVisable(false);
+    }
+   
+
+   
+    console.log(value);
 
   }, []);
   const handlePosition1 = useCallback(() => {
-    setValue("right");
-    console.log("Right");
+    if(value==="right")
+    {
+      setValue("right");
+      setVisable(false);
+    }
+    else
+    {
+      setValue("left");
+      setVisable(true);
+    }
+    console.log(value);
   }, []);
 
   const handleTheme = useCallback(() => {
@@ -112,7 +135,6 @@ export default function HomePage() {
   const handleChange3 = useCallback((newChecked) => setChecked3(newChecked), []);
   const handleChange4 = useCallback((newChecked) => setChecked4(newChecked), []);
   const handleChange5 = useCallback((newChecked) => setChecked5(newChecked), []);
- const [visable, setVisable] = useState(false);
 
 
 
@@ -345,7 +367,7 @@ console.log(rangeCount);
             disabled: false,
           }}
           discardAction={{
-            onAction: () => console.log('add form submit logic'),
+            onAction: () => { setVisable(false), console.log('add form submit logic')},
           }}
         />
       }
